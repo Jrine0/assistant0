@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Display</title>
     <style>
-        /* Animated Cloud Theme CSS */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #e8f4fc;
+        }
+
+        .svg-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            color: #333;
-            background-color: #e8f4fc;
-            position: relative;
-            overflow-x: hidden;
         }
 
         .content {
@@ -25,8 +36,6 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 10;
         }
 
         h1 {
@@ -41,132 +50,137 @@
             font-size: 16px;
         }
 
-        /* Cloud background */
-        .cloud-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
+        /* Animation for clouds */
+        .cloud1 {
+            animation: floatCloud1 80s linear infinite;
+        }
+        
+        .cloud2 {
+            animation: floatCloud2 120s linear infinite;
+        }
+        
+        .cloud3 {
+            animation: floatCloud3 100s linear infinite;
+        }
+        
+        .cloud4 {
+            animation: floatCloud4 90s linear infinite;
+        }
+        
+        .cloud5 {
+            animation: floatCloud5 110s linear infinite;
         }
 
-        .cloud {
-            position: absolute;
-            width: 200px;
-            height: 60px;
-            background-color: #fff;
-            border-radius: 50px;
-            opacity: 0.8;
-            filter: blur(5px);
-            animation: float linear infinite;
+        @keyframes floatCloud1 {
+            0% { transform: translateX(-300px); }
+            100% { transform: translateX(2000px); }
         }
-
-        .cloud:before,
-        .cloud:after {
-            content: '';
-            position: absolute;
-            background-color: #fff;
-            border-radius: 50%;
+        
+        @keyframes floatCloud2 {
+            0% { transform: translateX(-600px); }
+            100% { transform: translateX(2000px); }
         }
-
-        .cloud:before {
-            width: 100px;
-            height: 100px;
-            top: -50px;
-            left: 25px;
+        
+        @keyframes floatCloud3 {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(2000px); }
         }
-
-        .cloud:after {
-            width: 80px;
-            height: 80px;
-            top: -35px;
-            right: 25px;
+        
+        @keyframes floatCloud4 {
+            0% { transform: translateX(-500px); }
+            100% { transform: translateX(2000px); }
         }
-
-        .cloud:nth-child(1) {
-            top: 10%;
-            animation-duration: 120s;
-            animation-delay: -10s;
-            transform: scale(0.8);
-        }
-
-        .cloud:nth-child(2) {
-            top: 30%;
-            animation-duration: 100s;
-            animation-delay: -20s;
-            transform: scale(1.2);
-        }
-
-        .cloud:nth-child(3) {
-            top: 50%;
-            animation-duration: 140s;
-            animation-delay: 0s;
-            transform: scale(0.9);
-        }
-
-        .cloud:nth-child(4) {
-            top: 70%;
-            animation-duration: 110s;
-            animation-delay: -5s;
-            transform: scale(1.1);
-        }
-
-        .cloud:nth-child(5) {
-            top: 85%;
-            animation-duration: 130s;
-            animation-delay: -30s;
-            transform: scale(0.7);
-        }
-
-        @keyframes float {
-            0% {
-                left: -200px;
-            }
-
-            100% {
-                left: 100%;
-            }
+        
+        @keyframes floatCloud5 {
+            0% { transform: translateX(-400px); }
+            100% { transform: translateX(2000px); }
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            body {
+            .container {
                 padding: 15px;
             }
-
+            
             .content {
                 padding: 20px;
             }
-
+            
             h1 {
                 font-size: 24px;
             }
         }
     </style>
 </head>
-
 <body>
-    <!-- Cloud animation background -->
-    <div class="cloud-container">
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-    </div>
-
-    <div class="content">
-        <p>
-            I’m a place where chatter flows,
-            With trays in hands and food in rows.
-            From early snacks to lunchtime cheer,
-            You’ll always find your friends in here.
-            Not a restaurant, but food is near—
-            Guess the spot, it's loud but dear!
-        </p>
+    <!-- SVG Cloud Background -->
+    <svg class="svg-background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+        <!-- Sky gradient background -->
+        <defs>
+            <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#a5d8ff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#e8f4fc;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        
+        <!-- Background rectangle -->
+        <rect width="100%" height="100%" fill="url(#skyGradient)" />
+        
+        <!-- Cloud 1 -->
+        <g class="cloud1" opacity="0.9">
+            <ellipse cx="100" cy="200" rx="60" ry="40" fill="#fff" />
+            <ellipse cx="160" cy="200" rx="70" ry="50" fill="#fff" />
+            <ellipse cx="230" cy="200" rx="60" ry="40" fill="#fff" />
+            <ellipse cx="185" cy="170" rx="55" ry="35" fill="#fff" />
+        </g>
+        
+        <!-- Cloud 2 -->
+        <g class="cloud2" opacity="0.8">
+            <ellipse cx="300" cy="400" rx="80" ry="50" fill="#fff" />
+            <ellipse cx="380" cy="400" rx="90" ry="60" fill="#fff" />
+            <ellipse cx="470" cy="400" rx="80" ry="50" fill="#fff" />
+            <ellipse cx="410" cy="360" rx="70" ry="40" fill="#fff" />
+        </g>
+        
+        <!-- Cloud 3 -->
+        <g class="cloud3" opacity="0.85">
+            <ellipse cx="150" cy="650" rx="70" ry="45" fill="#fff" />
+            <ellipse cx="220" cy="650" rx="80" ry="55" fill="#fff" />
+            <ellipse cx="300" cy="650" rx="70" ry="45" fill="#fff" />
+            <ellipse cx="240" cy="615" rx="60" ry="35" fill="#fff" />
+        </g>
+        
+        <!-- Cloud 4 -->
+        <g class="cloud4" opacity="0.75">
+            <ellipse cx="500" cy="800" rx="90" ry="60" fill="#fff" />
+            <ellipse cx="600" cy="800" rx="100" ry="70" fill="#fff" />
+            <ellipse cx="710" cy="800" rx="90" ry="60" fill="#fff" />
+            <ellipse cx="630" cy="750" rx="80" ry="50" fill="#fff" />
+        </g>
+        
+        <!-- Cloud 5 -->
+        <g class="cloud5" opacity="0.85">
+            <ellipse cx="400" cy="150" rx="65" ry="40" fill="#fff" />
+            <ellipse cx="465" cy="150" rx="75" ry="50" fill="#fff" />
+            <ellipse cx="540" cy="150" rx="65" ry="40" fill="#fff" />
+            <ellipse cx="490" cy="120" rx="55" ry="30" fill="#fff" />
+        </g>
+    </svg>
+    
+    <div class="container">
+        <div class="content">
+            <h1>Your Message</h1>
+            <p>
+                Replace this text with your own message. This is a simple static webpage
+                designed to display text content clearly. You can modify this HTML file
+                to include any text you want to share with others.
+            </p>
+            <p>
+                When you host this page, people with the link will be able to see
+                this text content in their web browser. The background features animated
+                SVG clouds for a pleasant visual experience.
+            </p>
+        </div>
     </div>
 </body>
-
 </html>
